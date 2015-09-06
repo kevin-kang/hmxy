@@ -1,9 +1,9 @@
 $baseFontSize : 20 !default;
 $white : #fff;
 $ccc : #ccc;
+$c333 : #333;
 $orange : #fdb12a;
 /**/
-@mixin rounded($value...) { border-radius: $value; }
 
 @mixin transition($value...) {
     -webkit-transition: $value;
@@ -46,7 +46,7 @@ a, img, input, button, textarea { outline:none; -webkit-tap-highlight-color: rgb
 a, img { -webkit-touch-callout: none;}
 body { font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; color: #333; background-color: #f5f5f9;}
 html { overflow-x: hidden}
-html, body { -webkit-user-select: none; user-select: none;}
+html, body { -webkit-user-select: none; user-select: none; height: 100%; overflow: hidden;}
 input, textarea, img { vertical-align: middle; }
 
 a { 
@@ -85,27 +85,6 @@ header { position: relative; height: torem(87); background-color: $white;
         position: absolute; color: #fa9600; font-size: torem(28); padding-left: torem(30); background: url(img/backbtn.png) no-repeat 0 50%/(torem(18) torem(36)); height: torem(87); top: 0; left: torem(20);
     }
 }
-/*form*/
-.ipt {
-    position: relative; height: torem(88); display: -webkit-box;
-    &:after { @extend %line; z-index: 2;}
-    .clear-btn { position: absolute; right: 0; top: 0; height: 100%; bottom: 0; width: torem(90); text-align: center; z-index: 2; display: none;
-        &:before { content: ''; display: inline-block; position: relative; top: 50%; margin-top: -(torem(15)); background: #cdcdcd url(img/cls-icon.png) no-repeat 50% 49%/ (torem(14) torem(14)); width: torem(30); height: torem(30); @include rounded(50%);
-        } 
-        &:active:before { background-color: #4bafff;}
-    }
-
-    label { font-size: torem(30); line-height: torem(88); width: torem(110); display: block;}
-    input { display: block; -webkit-box-flex: 1; font-size: torem(30); height: torem(88); vertical-align: middle; color: #666; padding-right: torem(30);}
-}
-.form-btn { margin: 0 torem(30);
-    .sub-btn { background-color: $orange; color: $white; text-align: center; height: torem(86); @include rounded(torem(8)); font-size: torem(36); width: 100%;
-        &:active { background-color: darken($orange,10%);}
-    }
-}
-.gray { background-color: #ecebf1 !important; color: #ccc !important;}
-.gray:active { background-color: #ecebf1 !important;}
-.tips { position: fixed; left: 7.969%; right: 7.969%; top: 50%; margin-top: -5rem; background-color: #49494a; border-radius: .45rem; height: 5.3rem; line-height: 5.3rem; text-align: center; color: #fff; font-size: 1.4rem; z-index: 100; display: none;}
 /*animate css*/
 .bounceIn {
     @include animation(bounceInDown .8s ease);
@@ -164,9 +143,9 @@ header { position: relative; height: torem(87); background-color: $white;
         transform: scale3d(.3, .3, .3);
     }
 }
-@media all and (min-width:320px) { html {font-size: 10px;}}
-@media all and (min-width:360px) { html {font-size: 11.25px;}}
-@media all and (min-width:375px) { html {font-size: 11.71875px;}}
-@media all and (min-width:480px) { html {font-size: 15px;}}
-@media all and (min-width:640px) { html {font-size: 20px;}}
-@media all and (min-width:720px) { html {font-size: 24px;}}
+// @media all and (min-width:320px) { html {font-size: 10px;}}
+// @media all and (min-width:360px) { html {font-size: 11.25px;}}
+// @media all and (min-width:375px) { html {font-size: 11.71875px;}}
+// @media all and (min-width:480px) { html {font-size: 15px;}}
+// @media all and (min-width:640px) { html {font-size: 20px;}}
+// @media all and (min-width:720px) { html {font-size: 24px;}}
