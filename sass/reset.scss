@@ -2,6 +2,7 @@ $baseFontSize : 20 !default;
 $white : #fff;
 $ccc : #ccc;
 $c333 : #333;
+$black: #000;
 $orange : #fdb12a;
 /**/
 
@@ -44,9 +45,9 @@ input, button { border: 0; outline: none;}
 img { width: 100%;}
 a, img, input, button, textarea { outline:none; -webkit-tap-highlight-color: rgba(0,0,0,0);}
 a, img { -webkit-touch-callout: none;}
-body { font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; color: #333; background-color: #f5f5f9;}
+body { font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; color: #333; background-color: #f5f5f9; position: relative;}
 html { overflow-x: hidden}
-html, body { -webkit-user-select: none; user-select: none; height: 100%; overflow: hidden;}
+html, body { -webkit-user-select: none; user-select: none; height: 100%; overflow-x: hidden;}
 input, textarea, img { vertical-align: middle; }
 
 a { 
@@ -64,7 +65,7 @@ a {
     @extend .clearfix;
 }
 
-%line { content: ''; position: absolute; left: 0; bottom: -1px; right: 0; height: 0; line-height: 0; font-size: 0; overflow: hidden; border-bottom: 1px solid #ccc; z-index: 2; @include transform(scaleY(.5));}
+%line { content: ''; position: absolute; left: 0; bottom: 0; right: 0; height: 0; line-height: 0; font-size: 0; overflow: hidden; border-bottom: 1px solid #e2e0e0; z-index: 3; @include transform(scaleY(.5));}
 
 %vcenter { display: -webkit-box; -webkit-box-align: center;} //垂直居中
 %hcenter { display: -webkit-box; -webkit-box-pack: center;} //水平居中

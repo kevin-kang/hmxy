@@ -1,4 +1,5 @@
-;(function(factory) {
+;
+(function(factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD模式
         define(factory);
@@ -60,21 +61,123 @@
 
         $(tabBtnBox).on(active, tabBtn, function() {
             var idx = $(this).index();
-            cur(this,mark);
+            cur(this, mark);
             $(tabContBox).find(tabCont).eq(idx).show().siblings().hide();
         });
     }
 
-    function query(query){
+    function query(query) {
         var subUrl = location.search.slice(location.search.indexOf('?') + 1),
             subArr = subUrl.split('&') || [],
             querystr = '';
 
-        return subArr.forEach(function(v){
+        return subArr.forEach(function(v) {
             v.indexOf(query + '=') === 0 && (querystr = v.slice(query.length + 1))
         }), querystr;
     }
+    /**
+     * [Queue 队列]
+     */
+    function Queue() {
+        this.queue = [];
+    }
 
+    $.extend(Queue.prototype, {
+        addqueue: function() {
+            if (arguments.length == 0) {
+                return -1;
+            }
+            var i = 0,
+                len = arguments.length;
+            for (; i < len; i++) {
+                this.queue.push(arguments[i]);
+            }
+        },
+
+        dequeue: function() {
+            if (this.queue.length == 0) {
+                return null
+            } else {
+                return this.queue.shift();
+            }
+        }
+    });
+
+    /**
+     * [ImagesLoader 图片加载队列]
+     */
+    function ImagesLoader() { //图片加载队列
+        Queue.apply(this, arguments);
+        this.init.apply(this, arguments);
+    }
+
+    ImagesLoader.prototype = new Queue();
+    $.extend(ImagesLoader.prototype, {
+        addImagesQueue: function() {
+            var that = this,
+                arr = that.imagesArr;
+            $.each(arr, function() {
+                that.addqueue(this);
+            });
+        },
+
+        imagesProgress: function() {
+            var that = this,
+                len = that.maxNum,
+                pet = that.total;
+
+            $('.text em').eq(0).text(pet);
+            $('.progress div').css({
+                '-webkit-transform': 'translateX(' + (-100 + ((100 / len) * pet)) + '%)'
+            });
+        },
+
+        _completes: function() {
+            var that = this;
+
+            if (this.total === this.maxNum) {
+                setTimeout(function() {
+                    $('.loading').hide();
+                    $('.page').show();
+                    that.allcompletes();
+                }, 350);
+            }
+        },
+
+        allcompletes: function(cb) {
+            var cb = cb || function() {};
+
+            cb();
+        },
+
+        loaded: function() {
+            var that = this;
+
+            $('.loading').show();
+            if (that.queue.length > 0) {
+                $('.loading').show();
+                $('.text em').eq(1).text(that.maxNum);
+                that.image.onload = that.image.onerror = function() {
+                    that.total++;
+                    that.imagesProgress();
+                    that._completes();
+                    setTimeout(function() {
+                        that.loaded();
+                    }, 20);
+                };
+                // console.log(that.dequeue);
+                that.image.src = that.dequeue();
+            }
+        },
+
+        init: function(imagesArr) {
+            this.maxNum = imagesArr.length;
+            this.image = new Image();
+            this.total = 0;
+            this.imagesArr = imagesArr;
+            this.addImagesQueue();
+        }
+    });
 
     return {
         tmpl: templeteInit,
@@ -84,6 +187,7 @@
         isNull: isNull,
         tab: tab,
         query: query,
-        strLen: strLen
+        strLen: strLen,
+        ImagesLoader: ImagesLoader
     };
 }));

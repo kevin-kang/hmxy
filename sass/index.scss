@@ -4,6 +4,7 @@
 .bg-box { width: 100%; height: 100%;}
 .bg { width: 100%; height: 100%; background: url(img/bg.jpg) 0 100% no-repeat; background-size: cover;}
 .page-1 { display: none;
+	.img { opacity: 1; }
 	.img-1 { background-image: url(img/img-1.png); left: 0; top: 0; width: torem(378); height: torem(275);}
 	.img-2 { background-image: url(img/img-2.png); right: 0; top: 0; width: torem(255); height: torem(196);}
 	.img-3 { background-image: url(img/img-3.png); right: 0; top: torem(204); width: torem(255); height: torem(275);}
@@ -11,6 +12,15 @@
 	.img-5 { background-image: url(img/txt-1-2.png); top: torem(-7); right: torem(2); width: torem(137); height: torem(71);}
 	.img-6 { background-image: url(img/img-5.png); left: 0; bottom: 0; width: torem(296); height: torem(398);}
 	.img-7 { background-image: url(img/img-4.png); right: 0; bottom: 0; width: torem(395); height: torem(516);}
+}
+.anim {
+	.img-1 { -webkit-animation: zoomIn .5s ease .2s both;}
+	.img-2 { -webkit-animation: zoomIn .5s ease .2s both;}
+	.img-3 { -webkit-animation: zoomIn .5s ease .4s both;}
+	.img-7 { -webkit-animation: zoomIn .5s ease .6s both;}
+	.img-6 { -webkit-animation: zoomIn .5s ease .8s both;}
+	.img-4 { -webkit-animation: zoomIn .5s ease 1s both;}
+	.img-5 { -webkit-animation: rotateIn .65s ease 1.2s both;}
 }
 .page-2 {
 	.img-1 { background-image: url(img/txt-2.png); left: 50%; margin-left: torem(-561/2); top: torem(100); width: torem(561); height: torem(102);}
@@ -24,15 +34,47 @@
 	}
 	.img-2 { background-image: url(img/txt-3.png); left: 50%; margin-left: torem(-456/2); top: torem(527); width: torem(456); height: torem(28);}
 	.img-3 { background-image: url(img/img-6.png); left: 0; bottom: 0; width: 100%; height: torem(265);}
-	.keyboard { width: torem(473); left: 50%; margin-left: torem(-473/2); top: torem(388); /*bottom: torem(126);*/
+	.keyboard { width: torem(473); left: 50%; margin-left: torem(-473/2); top: torem(388); /*bottom: torem(126);*/ display: none;
 		li { float: left; border: torem(3) solid #b12c3f; border-radius: 50%; height: torem(110); width: torem(110);  margin-top: torem(24); font-family: Helvetica Light; font-size: torem(80); line-height: torem(118); text-align: center; color: #af253a;
 			&:nth-child(3n+2) { margin: torem(24) torem(70) 0;}
 			&.del { background: url(img/del.png) 50% no-repeat; background-size: torem(43) auto; line-height: 0; font-size: 0; text-indent: -99em; overflow: hidden;}
 			&.ok { font-size: torem(47);}
+			&:active { background-color: rgba(255,255,255,.3); transition: all .3s ease .02s;}
 		}
 
 	}
 	.isshow { display: block;
 		& ~ .img-2, & ~ .img-3 { display: none;}
 	}
+}
+
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes rotateIn {
+    0% {
+        -webkit-transform-origin: center;
+        transform-origin: center;
+        -webkit-transform: rotate3d(0, 0, 1, -210deg) scale3d(3, 3, 3);
+        transform: rotate3d(0, 0, 1, -210deg) scale3d(3, 3, 3);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform-origin: center;
+        transform-origin: center;
+        -webkit-transform: none;
+        transform: none;
+        opacity: 1;
+    }
 }

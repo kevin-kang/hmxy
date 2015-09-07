@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>黑马学院</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" searchtype="map">
+    <link rel="stylesheet" href="css/list.css">
+</head>
+<body ontouchstart="">
+    <div class="page page-3">
+        <div class="header">
+            <img src="images/bnr.jpg" alt="">
+            <div class="user">
+                <span>kevin</span> <img src="images/test.jpg" alt="">
+            </div>
+        </div>
+        <div class="cont-list">
+
+            <!-- <dl>
+                <dt><img src="images/test.jpg" alt=""></dt>
+                <dd>
+                    <h2>牛文文</h2>
+                    <p>几年以来，各位创业家导师在百忙之中抽出时间，不计得失为黑马们传道、授业、解惑，把创业的风吹到了更多人心里，也使黑马学院逐渐成为创业圈里最接地气的“实战商学院”，让中国的商业智慧得以传承。教师节到了，六千余人次参加过学习的黑马学员，衷心感谢各位企业家导师的付出，祝各位黑马导师教师节快乐！</p>
+                    <div class="media">
+                        <img src="images/test.jpg" alt="">
+                        <img src="images/test.jpg" alt="">
+                        <img src="images/test.jpg" alt="">
+                    </div>
+                    <div class="tools">
+                        <time>1分钟前</time>
+                        <span>
+                            <em class="good">500</em>
+                            <em class="pl">300</em>
+                        </span>   
+                    </div>
+                </dd>
+            </dl> -->
+        </div>
+
+        <div class="img img-1"></div>
+        <div class="img img-2"></div>
+    </div>
+    <div class="btm-layer"></div>
+
+    <div class="mask-layer"></div>
+    
+    <script type="text/template">
+        <dl>
+            <dt><img src="{thumb}" alt="{name}"></dt>
+            <dd>
+                <h2>{name}</h2>
+                <p>{description}</p>
+                <iframe {isvideo} src="{video}" frameborder=0 allowfullscreen></iframe>
+                <div {isshow} class="media">
+                    {thumb}
+                </div>
+                <div class="tools">
+                    <time>{status_time}</time>
+                    <span>
+                        <em class="good">{zan}</em>
+                        <em class="pl">{comments}</em>
+                    </span>   
+                </div>
+            </dd>
+        </dl>
+    </script>
+    <script src="js/lib/zepto.js"></script>
+    <script src="js/lib/require.js"></script>
+    <script src="js/list.js"></script>
+</body>
+</html>
