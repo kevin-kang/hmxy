@@ -46,6 +46,9 @@
 	.isshow { display: block;
 		& ~ .img-2, & ~ .img-3 { display: none;}
 	}
+    &.anim {
+        -webkit-animation: zoomIn2 .5s ease both;
+    }
 }
 
 
@@ -54,6 +57,18 @@
         opacity: 0;
         -webkit-transform: scale3d(.3, .3, .3);
         transform: scale3d(.3, .3, .3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes zoomIn2 {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.6, .6, .6);
+        transform: scale3d(.6, .6, .6);
     }
 
     50% {

@@ -70,31 +70,31 @@
     <div class="mask-layer"></div>
     
     <script type="text/template" id="template">
-        <dl>
-            <dt><img src="{thumb}" alt="{name}"></dt>
+        <dl data-aid="{a_id}">
+            <dt><img src="{headimg}" alt="{name}"></dt>
             <dd>
                 <h2>{name}</h2>
-                <p>{description}</p>
-                <iframe {isvideo} src="{video}" frameborder=0 allowfullscreen></iframe>
-                <div {isshow} class="media">
+                <p class="{desdis}">{description}</p>
+                <iframe class="{isvideo}" src="{video}" frameborder=0 allowfullscreen></iframe>
+                <div class="media {isshow}">
                     {imgthumb}
                 </div>
                 <div class="tools">
                     <time>{status_time}</time>
                     <span>
-                        <em class="good">{zan}</em>
+                        <em class="good {isgood}">{zan}</em>
                         <em class="pl">{comments}</em>
                     </span>   
                 </div>
-                <div class="good-pl">
-                    <p class="goodlist">{zanlist}</p>
-                    <ul class="pllist">
+                <div class="good-pl {isdis}">
+                    <p class="goodlist {isgl}">{zanlist}</p>
+                    <ul class="pllist {ispl}">
                         {pllist}
                     </ul>
                 </div>
                 <div class="ipt-pl">
                     <textarea placeholder="说点什么……"></textarea>
-                    <span data-a-id="{a_id}">提交</span>
+                    <span>提交</span>
                 </div>
             </dd>
         </dl>

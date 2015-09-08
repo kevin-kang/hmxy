@@ -36,7 +36,7 @@
     }
 
     function isNull(data) {
-        return (data == '' || data == undefined || data == null);
+        return (data == '' || data == undefined || data == null || data == 0);
     }
 
     function strLen(str) { //获取中英文字符长度一个中文占两个字符
