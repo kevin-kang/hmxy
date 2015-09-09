@@ -86,6 +86,12 @@ header { position: relative; height: torem(87); background-color: $white;
         position: absolute; color: #fa9600; font-size: torem(28); padding-left: torem(30); background: url(img/backbtn.png) no-repeat 0 50%/(torem(18) torem(36)); height: torem(87); top: 0; left: torem(20);
     }
 }
+.loading { margin: 0 20%; position: relative; top: 50%; transform: translateY(-50%);
+    .progress-box { height: torem(10); position: relative; overflow: hidden; border-radius: torem(5);}
+    .progress { background-color: #DFD6CD; border-radius: torem(5); height: torem(10); line-height: 0; font-size: 0; overflow: hidden;
+        div { background-color: #AF253A; border-radius: torem(5); height: torem(10); line-height: 0; font-size: 0; overflow: hidden; width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 1, 1); -webkit-transition: width 1.2s cubic-bezier(0.4, 0, 1, 1);}
+    }
+}
 /*animate css*/
 .bounceIn {
     @include animation(bounceInDown .8s ease);
@@ -144,9 +150,9 @@ header { position: relative; height: torem(87); background-color: $white;
         transform: scale3d(.3, .3, .3);
     }
 }
-// @media all and (min-width:320px) { html {font-size: 10px;}}
-// @media all and (min-width:360px) { html {font-size: 11.25px;}}
-// @media all and (min-width:375px) { html {font-size: 11.71875px;}}
-// @media all and (min-width:480px) { html {font-size: 15px;}}
-// @media all and (min-width:640px) { html {font-size: 20px;}}
-// @media all and (min-width:720px) { html {font-size: 24px;}}
+@media all and (min-width:320px) { html {font-size: 10px;}}
+@media all and (min-width:360px) { html {font-size: 11.25px;}}
+@media all and (min-width:375px) { html {font-size: 11.71875px;}}
+@media all and (min-width:480px) { html {font-size: 15px;}}
+@media all and (min-width:640px) { html {font-size: 20px;}}
+@media all and (min-width:720px) { html {font-size: 24px;}}

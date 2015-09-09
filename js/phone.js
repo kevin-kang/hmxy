@@ -41,14 +41,6 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
         $ipt.text(newValue);
     }
 
-    // function verifyPhone(e) { //验证手机号
-    //     var phone = $ipt.text();
-
-    //     if (!/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/g.test(phone)) {
-    //         alert('手机号错误！');
-    //     }
-    // }
-
     function addPhone() { //提交手机号
 
         if (!/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/g.test($ipt.text())) {
@@ -82,6 +74,7 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
     $okBtn.on('touchend', hideKeyboard); //完成按键
     $delBtn.on('touchend', delInputValue); //删除按键
 
-    history.pushState(null, '首页', 'http://app.iheima.com/special/teachersday/');
+    history.replaceState(null, '首页', 'http://app.iheima.com/special/teachersday/');
+
 
 });

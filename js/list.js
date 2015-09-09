@@ -13,7 +13,7 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
 
 
 	$user.find('span').html(userInfor.nickname);
-	$user.find('img').attr('src',userInfor.headimgurl);
+	$user.find('img').attr('src', userInfor.headimgurl);
 	/**
 	 * [getMore 获取列表数据]
 	 */
@@ -40,8 +40,8 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
 			v.imgthumb = [];
 			v.pllist = [];
 			v.zanlist = [];
-			v.isiframe = util.isNull(v.is_video) ? ' ' : '<iframe src="'+ v.thumb +'" frameborder="0" allowfullscreen></iframe>';
-			
+			v.isiframe = util.isNull(v.is_video) ? ' ' : '<iframe src="' + v.thumb + '" frameborder="0" allowfullscreen></iframe>';
+
 			v.isshow = util.isNull(v.is_video) ? ' ' : 'isdis';
 			v.desdis = util.isNull(v.description) ? 'isdis' : ' ';
 			v.description = util.isNull(v.description) ? ' ' : v.description;
@@ -80,18 +80,11 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
 		$contList.append(htmlPart.join(''));
 
 		$body.addClass('anim');
+
+		$user.css('opacity', 1);
+
+		localStorage.setItem('fromlist', 1);
 	}
-
-	// /**
-	//  * [initScroll 滚动加载更多]
-	//  */
-	// function initScroll(e) {
-	// 	var $target = $(this);
-
-	// 	if ($('body').scrollTop() == Math.abs($doc.height() - $win.height())) {
-	// 		getMore();
-	// 	}
-	// }
 
 	/**
 	 * [postZan 点赞]
@@ -141,7 +134,7 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
 			return false;
 		}
 
-		$target.html(parseInt($target.html(), 10) + 1);
+		$target.parents('dl').find('.pl').html(parseInt($target.parents('dl').find('.pl').html(), 10) + 1);
 		$target.data('posting', 1);
 		$.ajax({
 			url: 'http://app.iheima.com/?app=ihmactivity&controller=h5&action=activitycomment', //页数URL
@@ -159,6 +152,8 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
 				$iptpl.hide();
 				$goodpl.removeClass('isdis');
 				$target.parents('dd').removeClass('ipt-pl-show');
+				$target.siblings('textarea').val('');
+
 			}
 		});
 
@@ -184,39 +179,39 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
 
 	function fadeMaskLayer() {
 		var $target = $(this);
-		setTimeout(function(){
+		setTimeout(function() {
 			$target.css({
 				opacity: 0
 			});
-			$target.data('hides',1);
+			$target.data('hides', 1);
 			$('.btm-layer').addClass('anim');
 		}, 3000);
 	}
 
-	function hideMasklayer(){
+	function hideMasklayer() {
 		var $target = $(this);
 
-		if($target.data('hides')){
+		if ($target.data('hides')) {
 			$body.removeClass('anim');
-			$('.mask-layer').hide().data('hides',0);
-			$('.img-1, .img-2').hide().data('hides',0);
+			$('.mask-layer').hide().data('hides', 0);
+			$('.img-1, .img-2').hide().data('hides', 0);
 		}
 	}
 	// getMore();
 	// 
-	function shareShow(){
-		$('.img-2').show().css('opacity',1).data('hides',1);;
-		$('.mask-layer').show().css('opacity',1).data('hides',1);;
+	function shareShow() {
+		$('.img-2').show().css('opacity', 1).data('hides', 1);;
+		$('.mask-layer').show().css('opacity', 1).data('hides', 1);;
 	}
 
-	function lookZoomImg(){
+	function lookZoomImg() {
 		var $target = $(this),
 			bigsrc = $target.attr('bigsrc');
 
-		$zoomimg.show().css('opacity',1).find('img').attr('src', bigsrc);
+		$zoomimg.show().css('opacity', 1).find('img').attr('src', bigsrc);
 	}
 
-	function hideZoomImg(e){
+	function hideZoomImg(e) {
 		$(this).removeAttr('style');
 	}
 
@@ -228,12 +223,10 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
 
 	$contList.on('touchend', '.good', postZan)
 		.on('touchend', '.pl', showpl)
-		.on('touchend', '.ipt-pl span', postPl)
+		.on('touchend', '.sub-btn', postPl)
 		.on('click', '.media img', lookZoomImg);
 
 	$zoomimg.on('click', hideZoomImg);
 
-	history.pushState(null, '首页', 'http://app.iheima.com/special/teachersday/');
-	// history.go(-1);
-	// $win.on('scroll', initScroll);
+
 });

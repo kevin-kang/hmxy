@@ -1,8 +1,8 @@
 @import 'reset.scss';
 html, body { -webkit-user-select: text; user-select: text; height: auto;}
 .header{ position: relative; height: torem(397); margin-bottom: torem(30);
-    .user { position: absolute; right: torem(20); top: torem(321); font-size: torem(24); color: $white; line-height: torem(73); display: -webkit-box;
-        img { border: torem(3) solid $white; width: torem(106); height: torem(106); margin-left: torem(25); display: block;}
+    .user { position: absolute; right: torem(20); top: torem(321); font-size: torem(24); color: $white; line-height: torem(73); display: -webkit-box; opacity: 0;
+        img { border: torem(3) solid $white; width: torem(106); height: torem(106); margin-left: torem(25); display: block; background-color: $white;}
     }
 }
 .cont-list { padding-bottom: torem(120);
@@ -50,7 +50,7 @@ html, body { -webkit-user-select: text; user-select: text; height: auto;}
             textarea { font-size: torem(24); color: #e0e0e0; padding: torem(20) torem(28); line-height: 1.5; border: 0; border-radius: torem(10); width: 100%; height: torem(150); resize: none;
                 &:focus { color: $c333;}
             }
-            span { display: block; width: torem(200); height: torem(56); line-height: torem(56); border-radius: torem(10); margin: torem(20) auto 0; background-color: #af253a; color: $white; font-size: torem(30); text-align: center;}
+            .sub-btn { width: torem(200); height: torem(56); line-height: torem(56); border-radius: torem(10); margin: torem(20) auto 0; background-color: #af253a; color: $white; font-size: torem(30); text-align: center;}
         }
         &.ipt-pl-show { padding-bottom: torem(292);}
     }
