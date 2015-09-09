@@ -1,14 +1,19 @@
-require(['js/module/util', 'js/module/mfontsize'], function(util, login) {
+require(['js/module/util', 'js/module/mfontsize'], function(util) {
 	var $doc = $(document),
 		$win = $(window),
 		$body = $('body'),
 		$contList = $('.cont-list'),
 		$template = $('#template'),
 		$btmlayer = $('.btm-layer'),
+		$user = $('.user'),
+		$zoomimg = $('.zoomimg'),
 		templateHtml = $template.html(),
-		userInfor = JOSN.parse(localStorage.getItem('iheima.com')),
+		userInfor = JSON.parse(localStorage.getItem('iheima.com')),
 		page = 1;
 
+
+	$user.find('span').html(userInfor.nickname);
+	$user.find('img').attr('src',userInfor.headimgurl);
 	/**
 	 * [getMore 获取列表数据]
 	 */
@@ -35,8 +40,8 @@ require(['js/module/util', 'js/module/mfontsize'], function(util, login) {
 			v.imgthumb = [];
 			v.pllist = [];
 			v.zanlist = [];
-			v.isvideo = util.isNull(v.is_video) ? 'isdis' : ' ';
-			v.video = util.isNull(v.is_video) ? 'about:blank' : v.thumb;
+			v.isiframe = util.isNull(v.is_video) ? ' ' : '<iframe src="'+ v.thumb +'" frameborder="0" allowfullscreen></iframe>';
+			
 			v.isshow = util.isNull(v.is_video) ? ' ' : 'isdis';
 			v.desdis = util.isNull(v.description) ? 'isdis' : ' ';
 			v.description = util.isNull(v.description) ? ' ' : v.description;
@@ -44,8 +49,9 @@ require(['js/module/util', 'js/module/mfontsize'], function(util, login) {
 
 			if (util.isNull(v.is_video)) {
 				v.thumb = v.thumb ? v.thumb.split(',') : [];
-				v.thumb.forEach(function(v1, k1) {
-					v.imgthumb.push('<img src="' + v1 + '" alt="">');
+				v.s_thumb = v.s_thumb ? v.s_thumb.split(',') : [];
+				v.s_thumb.forEach(function(v1, k1) {
+					v.imgthumb.push('<img bigsrc="' + v.thumb[k1] + '" src="' + v1 + '" alt="">');
 				});
 			}
 
@@ -128,10 +134,10 @@ require(['js/module/util', 'js/module/mfontsize'], function(util, login) {
 			$iptpl = $target.parents('dd').find('.ipt-pl'),
 			$goodpl = $target.parents('dd').find('.good-pl'),
 			aid = $target.parents('dl').data('aid'),
-			textareaValue = $target.siblings('textarea').val(),
+			textareaValue = $.trim($target.siblings('textarea').val()).replace(/</g, '&lt;').replace(/>/g, '&gt;'),
 			lihtml = '<li><span class="plname">' + userInfor.nickname + '：</span><span class="plinfor">' + textareaValue + '</span></li>';
 
-		if ($target.data('posting')) {
+		if ($target.data('posting') || textareaValue.length == 0) {
 			return false;
 		}
 
@@ -143,7 +149,7 @@ require(['js/module/util', 'js/module/mfontsize'], function(util, login) {
 			dataType: 'jsonp',
 			jsonp: 'jsoncallback',
 			data: {
-				openid: userInfor.openid,,
+				openid: userInfor.openid,
 				aid: aid,
 				nickname: userInfor.nickname,
 				comment: textareaValue
@@ -203,14 +209,31 @@ require(['js/module/util', 'js/module/mfontsize'], function(util, login) {
 		$('.mask-layer').show().css('opacity',1).data('hides',1);;
 	}
 
-	$btmlayer.on('click', shareShow);
+	function lookZoomImg(){
+		var $target = $(this),
+			bigsrc = $target.attr('bigsrc');
+
+		$zoomimg.show().css('opacity',1).find('img').attr('src', bigsrc);
+	}
+
+	function hideZoomImg(e){
+		$(this).removeAttr('style');
+	}
+
+	$btmlayer.on('touchend', shareShow);
 
 	$body.on('webkitTransitionEnd transitionend', '.anim .img-1, .anim .mask-layer', fadeMaskLayer);
 
 	$body.on('touchstart', '.img-1, .img-2, .mask-layer', hideMasklayer);
 
-	$contList.on('click', '.good', postZan).on('click', '.pl', showpl).on('click', '.ipt-pl span', postPl);
+	$contList.on('touchend', '.good', postZan)
+		.on('touchend', '.pl', showpl)
+		.on('touchend', '.ipt-pl span', postPl)
+		.on('click', '.media img', lookZoomImg);
 
+	$zoomimg.on('click', hideZoomImg);
 
+	history.pushState(null, '首页', 'http://app.iheima.com/special/teachersday/');
+	// history.go(-1);
 	// $win.on('scroll', initScroll);
 });

@@ -1,4 +1,4 @@
-require(['js/module/util', 'js/module/login', 'js/module/mfontsize'], function(util, login) {
+require(['js/module/util', 'js/module/mfontsize'], function(util) {
     var $doc = $(document),
         $win = $(window),
         $page2 = $('.page-2'),
@@ -8,10 +8,7 @@ require(['js/module/util', 'js/module/login', 'js/module/mfontsize'], function(u
         $delBtn = $('.del'),
         $okBtn = $('.ok'),
         $keyboardKey = $keyboard.find('li').not('.del, .ok'),
-        WXcode = util.query('code'),
-        url = 'http://app.iheima.com/?app=ihmactivity&controller=h5&action=activityauthbackhome';
-
-    WXcode && login(url, WXcode); //微信授权
+        userInfor = JSON.parse(localStorage.getItem('iheima.com'));
 
     function showKeyboard() {
         if ($keyboard.css('display') != 'block' && $ipt.text() == '手机号') {
@@ -44,18 +41,18 @@ require(['js/module/util', 'js/module/login', 'js/module/mfontsize'], function(u
         $ipt.text(newValue);
     }
 
-    function verifyPhone(e) { //验证手机号
-        var phone = $ipt.text();
+    // function verifyPhone(e) { //验证手机号
+    //     var phone = $ipt.text();
 
-        if (!/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/g.test(phone)) {
-            alert('手机号错误！');
-            return false;
-        }
-    }
+    //     if (!/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/g.test(phone)) {
+    //         alert('手机号错误！');
+    //     }
+    // }
 
     function addPhone() { //提交手机号
 
-        if(!verifyPhone()){
+        if (!/^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/g.test($ipt.text())) {
+            alert('手机号错误！');
             return false;
         }
 
@@ -79,10 +76,12 @@ require(['js/module/util', 'js/module/login', 'js/module/mfontsize'], function(u
         });
     }
 
-    $iptBtn.on('click', addPhone); //提交
-    $ipt.on('click', showKeyboard); //输入框
-    $keyboardKey.on('click', changeInputValue); //键盘按键
-    $okBtn.on('click', hideKeyboard); //完成按键
-    $delBtn.on('click', delInputValue); //删除按键
+    $iptBtn.on('touchend', addPhone); //提交
+    $ipt.on('touchend', showKeyboard); //输入框
+    $keyboardKey.on('touchend', changeInputValue); //键盘按键
+    $okBtn.on('touchend', hideKeyboard); //完成按键
+    $delBtn.on('touchend', delInputValue); //删除按键
+
+    history.pushState(null, '首页', 'http://app.iheima.com/special/teachersday/');
 
 });

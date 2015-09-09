@@ -1,8 +1,8 @@
 @import 'reset.scss';
 html, body { -webkit-user-select: text; user-select: text; height: auto;}
 .header{ position: relative; height: torem(397); margin-bottom: torem(30);
-    .user { position: absolute; right: torem(20); top: torem(321); font-size: torem(24); color: $white; line-height: torem(73);
-        img { border: torem(3) solid $white; width: torem(106); height: torem(106); float: right; margin-left: torem(25);}
+    .user { position: absolute; right: torem(20); top: torem(321); font-size: torem(24); color: $white; line-height: torem(73); display: -webkit-box;
+        img { border: torem(3) solid $white; width: torem(106); height: torem(106); margin-left: torem(25); display: block;}
     }
 }
 .cont-list { padding-bottom: torem(120);
@@ -14,7 +14,7 @@ html, body { -webkit-user-select: text; user-select: text; height: auto;}
         h2 { font-size: torem(28); color: #6e7c9f; line-height: torem(36); height: torem(36); margin-bottom: torem(10);}
         p { font-size: torem(21); color: $black; line-height: torem(26);}
         .media { margin-top: torem(7); @extend %clearfix;
-            img {margin-top: torem(8); height: torem(148); width: auto; max-width: torem(444); float: left; display: inline;
+            img {margin-top: torem(8); height: torem(135); width: auto; max-width: torem(220); float: left; display: inline;
                 &:nth-child(3n+2) { margin: torem(8) torem(8) 0;}
             }
         }
@@ -39,6 +39,7 @@ html, body { -webkit-user-select: text; user-select: text; height: auto;}
                 li { display: -webkit-box; line-height: torem(29); overflow: hidden;
                     span { display: block; color: $black; font-size: torem(21);
                         &.plname { color: #3b5185;}
+                        &.plinfor { word-wrap: break-word; word-break: normal; -webkit-box-flex: 1; box-flex: 1;}
                     }
                 }
             }
@@ -55,13 +56,16 @@ html, body { -webkit-user-select: text; user-select: text; height: auto;}
     }
 }
 .img { opacity: 0; transition: opacity .5s ease; -webkit-transition: opacity .5s ease;}
-.btm-layer { position: fixed; width: 100%; height: torem(120); left: 0; bottom: 0; background:rgba(0,0,0,.8) url(img/share-btn.png) 50% no-repeat; background-size: auto torem(63); z-index: 80; opacity: 0; transform: translateY(100%); -webkit-transform: translateY(100%); -webkit-transition: all .5s ease; transition: all .5s ease;
+.btm-layer { position: fixed; width: 100%; height: torem(120); left: 0; bottom: 0; background:rgba(0,0,0,.8) url(img/share-btn.png) 50% no-repeat; background-size: auto torem(63); z-index: 80; opacity: 0; transform: translateY(100%); -webkit-transform: translateY(100%); -webkit-transition: all .5s ease .2s; transition: all .5s ease .2s;
     &.anim { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0);}
 }
 .img-1 { background: url(img/txt-4.png) 0 0 no-repeat; background-size: 100% auto; position: fixed; width: torem(547); height: torem(172); left: 50%; top: torem(122); margin-left: torem(-547/2); z-index: 100;
 }
 .img-2 { position: fixed; left: 50%; background: url(img/txt-5.png) 50% no-repeat; width: torem(483); height: torem(180); background-size: 100% auto;margin-left: torem(-483/2); top: torem(156); z-index: 100;}
 .mask-layer { opacity: 0; -webkit-transition: all .5s ease; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.86); z-index: 99;
+}
+.zoomimg { width: 100%; height: 100%; overflow: auto; position: fixed; left: 0; top: 0; background-color: rgba(0,0,0,1); z-index: 99; display: none; opacity: 0; transition: opacity .5s ease; -webkit-transition: opacity .5s ease;
+    img { position: relative; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%);}
 }
 
 .anim {

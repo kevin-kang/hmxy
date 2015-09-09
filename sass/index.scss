@@ -35,11 +35,11 @@
 	.img-2 { background-image: url(img/txt-3.png); left: 50%; margin-left: torem(-456/2); top: torem(527); width: torem(456); height: torem(28);}
 	.img-3 { background-image: url(img/img-6.png); left: 0; bottom: 0; width: 100%; height: torem(265);}
 	.keyboard { width: torem(473); left: 50%; margin-left: torem(-473/2); top: torem(388); /*bottom: torem(126);*/ display: none;
-		li { float: left; border: torem(3) solid #b12c3f; border-radius: 50%; height: torem(110); width: torem(110);  margin-top: torem(24); font-family: Helvetica Light; font-size: torem(80); line-height: torem(118); text-align: center; color: #af253a;
+		li { float: left; border: torem(3) solid #b12c3f; border-radius: 50%; height: torem(110); width: torem(110);  margin-top: torem(24); font-family: Helvetica Light; font-size: torem(80); line-height: torem(108); text-align: center; color: #af253a;
 			&:nth-child(3n+2) { margin: torem(24) torem(70) 0;}
 			&.del { background: url(img/del.png) 50% no-repeat; background-size: torem(43) auto; line-height: 0; font-size: 0; text-indent: -99em; overflow: hidden;}
 			&.ok { font-size: torem(47);}
-			&:active { background-color: rgba(255,255,255,.3); transition: all .3s ease .02s;}
+			&:active { background-color: rgba(255,255,255,.3); transition: all .3s ease .01s;}
 		}
 
 	}
@@ -55,8 +55,8 @@
 @-webkit-keyframes zoomIn {
     0% {
         opacity: 0;
-        -webkit-transform: scale3d(.3, .3, .3);
-        transform: scale3d(.3, .3, .3);
+        -webkit-transform: scale(.3);
+        transform: scale(.3);
     }
 
     50% {
@@ -67,8 +67,8 @@
 @-webkit-keyframes zoomIn2 {
     0% {
         opacity: 0;
-        -webkit-transform: scale3d(.6, .6, .6);
-        transform: scale3d(.6, .6, .6);
+        -webkit-transform: scale(.6);
+        transform: scale(.6);
     }
 
     50% {

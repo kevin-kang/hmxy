@@ -1,5 +1,7 @@
-require(['js/module/util', 'js/module/mfontsize'], function(util) {
-    var imgArr = [
+require(['js/module/util', 'js/module/login', 'js/module/mfontsize'], function(util, login) {
+    var $doc = $(document),
+        $page1 = $('.page-1'),
+        imgArr = [
             'css/img/bg.jpg',
             'css/img/img-1.png',
             'css/img/img-2.png',
@@ -17,23 +19,41 @@ require(['js/module/util', 'js/module/mfontsize'], function(util) {
             'css/img/del.png',
         ],
         imagesLoader = imagesLoader2 = null,
-        $page1 = $('.page-1');
+        WXcode = util.query('code'),
+        baseUrl = encodeURIComponent('http://app.iheima.com/special/teachersday'),
+        userInfor = JSON.parse(localStorage.getItem('iheima.com')),
+        url = 'http://app.iheima.com/?app=ihmactivity&controller=h5&action=activityauthbackhome',
+        goUrl = 'phone.html';
 
-    imagesLoader = new util.ImagesLoader(imgArr);
-    imagesLoader.loaded();
-    imagesLoader.allcompletes(function() {
-        $page1.addClass('anim');
-        $page1.find('.img-5').on('webkitAnimationEnd animationEnd', goPhone);
-        imagesLoader2 = new util.ImagesLoader(imgArrPhone);
-        imagesLoader2.loaded();
-    });
+    try {
+        if (!WXcode) {
+            location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe7d51503312986a8&redirect_uri=' + baseUrl + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+            return false;
+        } else {
+            imagesLoader = new util.ImagesLoader(imgArr);
+            imagesLoader.loaded();
+            imagesLoader.allcompletes(function() {
+                $page1.addClass('anim');
+                imagesLoader2 = new util.ImagesLoader(imgArrPhone);
+                imagesLoader2.loaded();
+            });
 
-    function goPhone(e) {
-        setTimeout(function() {
-            location.href = 'phone.html'
-        }, 3000);
+            login(url, WXcode, function(data) { //微信授权
+                if (data.mobile) {
+                    goUrl = 'list.html';
+                    alert('有了');
+                }
+            });
+        }
+        alert('cs');
+        function goPhone(e) {
+            alert('不行了');
+            location.href = goUrl;
+        }
+
+        $doc.on('touchend', '.page', goPhone);
+    } catch (e) {
+        alert("出错：" + e);
     }
-
-    $page1.on('click', goPhone);
 
 });

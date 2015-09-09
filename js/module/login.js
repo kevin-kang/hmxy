@@ -6,14 +6,13 @@ define(['js/module/util'], function(util) {
             url: url,
             type: 'GET',
             dataType: 'jsonp',
+            jsonp: 'jsoncallback',
             data: {
                 code: WXcode
             },
             success: function(res) {
-                if (res.id) {
-                    localStorage.setItem('iheima.com', JSON.stringify(res));
-                    cb && cb();
-                }
+                localStorage.setItem('iheima.com', JSON.stringify(res));
+                cb && cb(res);
             }
         });
     }
