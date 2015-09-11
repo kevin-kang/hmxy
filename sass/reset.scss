@@ -86,10 +86,10 @@ header { position: relative; height: torem(87); background-color: $white;
         position: absolute; color: #fa9600; font-size: torem(28); padding-left: torem(30); background: url(img/backbtn.png) no-repeat 0 50%/(torem(18) torem(36)); height: torem(87); top: 0; left: torem(20);
     }
 }
-.loading { margin: 0 20%; position: relative; top: 50%; transform: translateY(-50%);
+.loading { margin: 0 20%; position: relative; top: 50%; transform: translateY(-50%); display: none;
     .progress-box { height: torem(10); position: relative; overflow: hidden; border-radius: torem(5);}
     .progress { background-color: #DFD6CD; border-radius: torem(5); height: torem(10); line-height: 0; font-size: 0; overflow: hidden;
-        div { background-color: #AF253A; border-radius: torem(5); height: torem(10); line-height: 0; font-size: 0; overflow: hidden; width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 1, 1); -webkit-transition: width 1.2s cubic-bezier(0.4, 0, 1, 1);}
+        div { background-color: #AF253A; border-radius: torem(5); height: torem(10); line-height: 0; font-size: 0; overflow: hidden; width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 1, 1); -webkit-transition: width .1s cubic-bezier(0.4, 0, 1, 1);}
     }
 }
 /*animate css*/

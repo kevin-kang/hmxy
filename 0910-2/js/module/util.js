@@ -152,7 +152,9 @@
                 that.image.onload = that.image.onerror = function() {
                     that.total++;
                     that.imagesProgress();
-                    that.loaded();
+                    setTimeout(function() {
+                        that.loaded();
+                    }, 80);
                 };
                 that.image.src = that.dequeue();
             }
